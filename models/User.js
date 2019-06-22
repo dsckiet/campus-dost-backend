@@ -4,39 +4,38 @@ const userSchema = new mongoose.Schema({
 	name: { 
 		type: String,
 		required: true,
-		unique: true,
 		max: 255,
 		min: 3
 	},
-	category: {
+	category: [{
 		type: String,
 		required: true,
 		enum: ['faculty', 'warden', 'lead', 'bodies']
-	}
-	collegeId: {
+	}],
+	empId: {
+		type: String,
+		required: true,
+		unique: true,
+		max: 20
+	},
+	email: [{
 		type: String,
 		required: true,
 		unique: true,
 		max: 255
-	},
-	email: {
+	}],
+	contactNo: [{
 		type: String,
 		required: true,
 		unique: true,
-		max: 255
-	},
-	contactNo: {
-		type: String,
-		required: true,
-		unique: true
 		max: 10
-	},
+	}],
 	designation: {
 		tyoe: String,
 		required: true,
 		max: 255
 	},
-	cabinLoc: {
+	cabinLocation: {
 		type: String,
 		required: true,
 		max: 500
@@ -52,6 +51,9 @@ const userSchema = new mongoose.Schema({
 		type: Boolean,
 		required: true,
 		enum: [0, 1]
+	},
+	additionalDetails: {
+		type: String
 	}
 });
 

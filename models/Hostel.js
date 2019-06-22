@@ -6,12 +6,14 @@ const hostelSchema = new mongoose.Schema({
 		required: true,
 		min: 3,
 		max: 50
-		//enum: ['gargee', 'sarojini', 'saraswati', 'chandragupta', 'tagore', 'aryabhatta', 'atithi']
+		//enum: ['gargee', 'sarojini', 'saraswati', 'chandragupta', 'tagore', 'aryabhatt', 'atithi']
 	},
-	wardens: {
-		type: mongoose.Schema.Types.ObjectId,
-		ref: 'User'
-	},
+	wardens: [
+		{
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'User'
+		}
+	]
 });
 
 module.exports = Hostel = mongoose.model('Hostel', hostelSchema);

@@ -13,10 +13,12 @@ const departmentSchema = new mongoose.Schema({
 		required: true,
 		unique: true
 	},
-	faculties: {
-		type: mongoose.Schema.Types.ObjectId,
-		ref: 'User'
-	}
+	faculties: [
+		{
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'User'
+		}
+	]
 });
 
 module.exports = Department = mongoose.model('Department', departmentSchema);
