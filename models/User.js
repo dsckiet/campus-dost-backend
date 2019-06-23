@@ -31,9 +31,9 @@ const userSchema = new mongoose.Schema({
 		max: 10
 	}],
 	designation: {
-		tyoe: String,
-		required: true,
-		max: 255
+		type: String,
+		//required: true,
+		//max: 255
 	},
 	cabinLocation: {
 		type: String,
