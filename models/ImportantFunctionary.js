@@ -7,7 +7,7 @@ const importantFunctionarySchema = new mongoose.Schema({
 		min: 3,
 		max: 255
 	},
-	name: [{
+	functionaries: [{
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'User'
 	}],

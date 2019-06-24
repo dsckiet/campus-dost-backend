@@ -8,6 +8,10 @@ const hostelSchema = new mongoose.Schema({
 		max: 50
 		//enum: ['gargee', 'sarojini', 'saraswati', 'chandragupta', 'tagore', 'aryabhatt', 'atithi']
 	},
+	year: {
+		type: Number,
+		required: true
+	},
 	wardens: [
 		{
 			type: mongoose.Schema.Types.ObjectId,
