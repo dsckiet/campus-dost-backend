@@ -56,14 +56,14 @@ const userSchema = new mongoose.Schema({
 	canPost: {
 		type: Boolean,
 		required: true,
-		enum: [0, 1]
+		enum: ['true', 'false']
 	},
 	//canPost and available are using following conventions
 	//1 for yes and 0 for no..
 	available: {
 		type: Boolean,
 		required: true,
-		enum: [0, 1]
+		enum: ['true', 'false']
 	},
 	additionalDetails: {
 		type: String

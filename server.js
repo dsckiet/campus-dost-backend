@@ -19,6 +19,7 @@ app.use('/api/hostel', require('./routes/api/hostel'));
 app.use('/api/importantFunctionary', require('./routes/api/importantFunctionary'));
 app.use('/api/user', require('./routes/api/user'));
 app.use('/api/auth', require('./routes/api/auth'));
+app.use('/api/notice', require('./routes/api/notice'));
 
 app.get('*', (req, res) => {
 	res.status(200).json({ message: 'no api found' });

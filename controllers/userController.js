@@ -2,10 +2,9 @@ require('dotenv').config();
 
 const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
-//const User = require('./models/User');
 const bcrypt = require('bcrypt');
 
-//const Notice = require('../models/Notice');
+const Notice = require('../models/Notice');
 const User = require('../models/User');
 
 const loginUser = async (req, res) => {
@@ -40,18 +39,45 @@ const getProfile = async (req, res) => {
 
 const changeStatus = async (req, res) => {
 	try{
-		
+		let user = await User.findOne({ empId: req.user.empId });
+		if(!user) return res.status(200).json({ message: 'no user found!', user: null });
+
+		if(user.available === 'false')
+			user.available = 'true';
+		else
+			user.available = 'false';
+
+		await user.save();
+		return res.status(200).json({ message: 'status changed successfully', user });
 	}
 	catch (err) {
+		return res.status(400).json({ message: 'error changing the status', user });
 		
 	}
 }
 
 const postNotices = async (req, res) => {
 	try{
+		let user = await User.findOne({ empId: req.user.empId });
+		if (!user) return res.status(200).json({ message: 'no user found', user: null });
+
+		if(user.canPost === 'false') return res.status(200).json({ message: 'not eligible to post', user });
+
+		let notice = new Notice({
+			title: req.body.title,
+			description: req.body.description,
+			link: req.body.link,
+			postedBy: req.body.postedBy,
+			postedOn: req.body.postedOn
+		});
+
+		await notice.save();
+
+		return res.status(200).json({ message: 'notice posted successfully', notice });
 
 	}
 	catch (err) {
+		return res.status(400).json({ message: 'error while posting', notice: null });
 
 	}
 }
