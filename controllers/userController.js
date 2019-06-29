@@ -37,9 +37,56 @@ const getProfile = async (req, res) => {
 	}
 }
 
+const editProfile = async (req, res) => {
+	try{
+		let user = await User.findById(req.user._id);
+		if(!user) return res.status(200).json({ message: 'no user found!', user: null });
+
+		req.user.name = req.body.name;
+		req.user.category = req.body.category;
+		req.user.empId = req.body.empId;
+		req.user.email = req.body.email;
+		req.user.contactNo = req.body.contactNo;
+		req.user.designation = req.body.designation;
+		req.user.cabinLocation = req.body.cabinLocation;
+		req.user.available = req.body.available;
+		req.user.additionalDetails = req.body.additionalDetails;
+
+		return res.status(200).json({ message: 'profile updated successfully', user });
+		
+	}
+	catch (err) {
+		return res.status(400).json({ message: 'something went wrong', user: null });
+		
+	}
+}
+
+const changePassword = async (req, res) => {
+	try{
+		let user = await User.findById(req.user._id);
+		if(!user) return res.status(200).json({ message: 'no user found!', user: null });
+
+		const oldPassword = user.password;
+		const salt = await bcrypt.genSalt(10);
+		if(req.body.password.length < 5 || req.body.password.length > 255)
+			return res.status(400).json({ message: 'password must be at least 5 characters', user });
+
+		const newPassword = await bcrypt.hash(req.body.password, salt);
+		if(oldPassword === newPassword)
+			return res.status(400).json({ message: 'new password is same as old one.', user });
+		user.password = newPassword;
+		return res.status(200).json({ message: 'password updated successfully', user });
+		
+	}
+	catch (err) {
+		return res.status(400).json({ message: 'something went wrong', user: null });
+		
+	}
+}
+
 const changeStatus = async (req, res) => {
 	try{
-		let user = await User.findOne({ empId: req.user.empId });
+		let user = await User.findById(req.user._id);
 		if(!user) return res.status(200).json({ message: 'no user found!', user: null });
 
 		if(user.available === 'false')
@@ -58,7 +105,7 @@ const changeStatus = async (req, res) => {
 
 const postNotices = async (req, res) => {
 	try{
-		let user = await User.findOne({ empId: req.user.empId });
+		let user = await User.findById(req.user._id);
 		if (!user) return res.status(200).json({ message: 'no user found', user: null });
 
 		if(user.canPost === 'false') return res.status(200).json({ message: 'not eligible to post', user });
@@ -118,4 +165,4 @@ const createUser = async (req, res) => {
 	}
 }
 
-module.exports = { loginUser, getProfile, changeStatus, postNotices, createUser }
+module.exports = { loginUser, getProfile, editProfile, changePassword, changeStatus, postNotices, createUser }
