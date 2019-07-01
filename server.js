@@ -25,6 +25,24 @@ app.use('/api/user', require('./routes/api/user'));
 app.use('/api/auth', require('./routes/api/auth'));
 app.use('/api/notice', require('./routes/api/notice'));
 
+// const Department = require('./models/Department');
+
+// Department.create([
+//     {name: "Computer Science & Engineering"},
+//     {name: "Computer Science"},
+//     {name: "Information Technology"},
+//     {name: "Computer Science & Information Technology"},
+//     {name: "Electronics & Communication"},
+//     {name: "Electrical & Electronics Engineering"},
+//     {name: "Electronics & Instrumentation Engineering"},
+//     {name: "Mechanical Engineering"},
+//     {name: "Civil Engineering"},
+//     {name: "KIET School of Pharmacy"},
+//     {name: "KIET School of Management"},
+//     {name: "Department of Computer Applications"},
+//     {name: "Applied Science"}
+// ])
+
 app.get('*', (req, res) => {
 	res.status(200).json({ message: 'no api found' });
 });
