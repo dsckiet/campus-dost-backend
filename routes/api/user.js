@@ -8,6 +8,5 @@ const userController = require('../../controllers/userController');
 router.get('/', auth, userController.getProfile);
 router.post('/changeStatus', auth, userController.changeStatus);
 router.post('/postNotices', auth, userController.postNotices);
-router.post('/createUser', auth, userController.createUser);
 
 module.exports = router;

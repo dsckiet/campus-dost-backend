@@ -1,6 +1,8 @@
 const express = require("express");
 const path = require('path');
 const bodyParser = require('body-parser');
+const logger = require("morgan");
+
 
 require('dotenv').config();
 require('./config/dbconnection');
@@ -10,7 +12,9 @@ const app = express();
 app.use(express.urlencoded({
     extended: false
 }));
+app.use(logger("dev"));
 
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.use('/api/club', require('./routes/api/club'));
