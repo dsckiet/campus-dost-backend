@@ -12,7 +12,7 @@ const getClubs = async (req, res) => {
 
     res.status(200).json({ message: "clubs found!", clubs });
   } catch (err) {
-    res.status(400).json({ message: "no club found!", clubs: null });
+    res.status(400).json({ message: "no club found in fetching!", clubs: null });
   }
 };
 
@@ -24,7 +24,7 @@ const viewClub = async (req, res) => {
       .sort("name");
     res.status(200).json({ message: "leads found!", leads });
   } catch (err) {
-    res.status(400).json({ message: "no leads found!", leads: null });
+    res.status(400).json({ message: "no leads foundin fetching!", leads: null });
   }
 };
 
@@ -46,7 +46,7 @@ const viewClubLeadDetails = async (req, res) => {
       .sort("name");
     res.status(200).json({ message: "details found!", details });
   } catch (err) {
-    res.status(400).json({ message: "no details found!", details: null });
+    res.status(400).json({ message: "no details found in fetching!", details: null });
   }
 };
 

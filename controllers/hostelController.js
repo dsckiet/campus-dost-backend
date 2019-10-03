@@ -13,7 +13,7 @@ const getHostels = async (req, res) => {
 		res.status(200).json({ message: 'hostels found!', hostels });
 	}
 	catch (err) {
-		res.status(400).json({ message: 'no hostel found!', hostels: null });
+		res.status(400).json({ message: 'no hostel found in fetching!', hostels: null });
 	}
 
 };
@@ -27,7 +27,7 @@ const viewHostel = async (req, res) => {
 		res.status(200).json({ message: 'faculties found!', wardens });
 	}
 	catch(err) {
-		res.status(400).json({ message: 'no faculties found!', wardens: null })
+		res.status(400).json({ message: 'no faculties found in fetching!', wardens: null })
 	}
 
 };
@@ -40,7 +40,7 @@ const viewWardenDetails = async (req, res) => {
 		res.status(200).json({ message: 'details found!', details });
 	}
 	catch(err) {
-		res.status(400).json({ message: 'no details found!', details: null });
+		res.status(400).json({ message: 'no details found in fetching!', details: null });
 	}
 
 };
