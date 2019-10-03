@@ -13,7 +13,7 @@ const getNotices = async (req, res) => {
 		res.status(200).json({ message: 'posts found!', notices });
 	}
 	catch (err) {
-		res.status(400).json({ message: 'no post found!', notices: null });
+		res.status(400).json({ message: 'no post found in fetching!', notices: null });
 	}
 
 };
